@@ -88,7 +88,7 @@
 - 흔한 안티패턴 / 빠지기 쉬운 함정
 - callout(--tip / --warn / --danger)으로 강조
 
-### D. 마스터 한 줄 평
+### D. Key Summary
 
 - 그 sub-section의 take-away를 한 문장으로
 - 굵은 글씨 + 인용 마크 한 자리 + 강한 단언
@@ -110,7 +110,6 @@
 
 ```html
 <div class="callout callout--note">
-  <div class="callout-icon">ℹ️</div>
   <div class="callout-body">
     <p><strong>중요한 hedging</strong> — [구체 수치/모듈 수/구조 등]은 [출처]가 자체 문서화한 값이지, 업계 표준이나 공인 벤치마크가 아닙니다. 프로젝트 버전에 따라 변할 수 있으므로 도입 검토 시 <strong>최신 공식 문서를 직접 확인</strong>하세요.</p>
   </div>

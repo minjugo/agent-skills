@@ -1,6 +1,6 @@
 ---
 name: playbook-from-materials
-description: 다양한 자료(MD·PDF·PPTX·HTML·URL 등)를 입력받아 좌측 sticky 네비게이션과 4-section 구조(핵심 원리·실전 활용·전략적 인사이트·마스터 한 줄 평)를 가진 자기학습용 HTML Playbook 한 파일로 정리. Upstage 디자인 토큰 + 흰 배경 + 채워서 쓰는 활동 템플릿 + 이미지 플레이스홀더 포함. 사내 교육·신입 온보딩·세미나 후속 자료·자기학습 가이드 만들 때 사용.
+description: 다양한 자료(MD·PDF·PPTX·HTML·URL 등)를 입력받아 좌측 sticky 네비게이션과 4-section 구조(핵심 원리·실전 활용·전략적 인사이트·Key Summary)를 가진 자기학습용 HTML Playbook 한 파일로 정리. Upstage 디자인 토큰 + 흰 배경 + 채워서 쓰는 활동 템플릿 + 이미지 플레이스홀더 포함. 사내 교육·신입 온보딩·세미나 후속 자료·자기학습 가이드 만들 때 사용.
 allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 ---
 
@@ -82,8 +82,8 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 각 sub-section마다 시각적 요소가 도움될 자리에 **이미지 플레이스홀더**를 둔다. 자동으로 이미지를 만들지 않고, 빈 공간 + 안내문만 넣는다.
 
 두 종류:
-- `figure--screenshot` — 📷 SCREENSHOT (실제 툴/플랫폼 화면 캡처가 들어갈 자리)
-- `figure--illustration` — 🎨 ILLUSTRATION (개념 다이어그램이 들어갈 자리)
+- `figure--screenshot` — SCREENSHOT (실제 툴/플랫폼 화면 캡처가 들어갈 자리)
+- `figure--illustration` — ILLUSTRATION (개념 다이어그램이 들어갈 자리)
 
 각 placeholder에 다음 3가지를 명시:
 - **들어갈 이미지** (구체 묘사)
@@ -101,7 +101,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 - `<!-- BRAND -->` 영역 → 주제명
 - `<!-- HERO -->` 영역 → 큰 타이틀 + lede
 - `<!-- SIDEBAR_NAV -->` 영역 → 좌측 네비
-- `<!-- CONTENT_SECTIONS -->` 영역 → Intro + Pillar 1..N + 맺음말
+- `<!-- CONTENT_SECTIONS -->` 영역 → Intro + Pillar 1..N
 
 각 sub-section의 HTML은 `references/html-patterns.md`의 패턴을 그대로 따른다 — **새 디자인을 만들지 않는다**. 새 색상·폰트 도입 금지.
 
@@ -126,7 +126,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 
 - [ ] 주제와 pillar 구성이 자료의 무게중심을 반영하는가
 - [ ] 비공식·커뮤니티 개념이 hedging callout으로 표시됐는가
-- [ ] 각 개념 sub-section에 4-section 구조 (핵심 원리 / 실전 활용 / 전략적 인사이트 / 마스터 한 줄 평) 가 들어갔는가 — 활동 섹션 제외
+- [ ] 각 개념 sub-section에 4-section 구조 (핵심 원리 / 실전 활용 / 전략적 인사이트 / Key Summary) 가 들어갔는가 — 활동 섹션 제외
 - [ ] [활동] 섹션의 모든 코드 블록 우상단에 `복사` 버튼이 있는가 (`<button class="code-copy">복사</button>`)
 - [ ] Upstage 디자인 토큰을 그대로 사용했는가 (CSS 변수 변경 금지)
 - [ ] 본문 영역 흰색 배경 (보라/원색 배경 금지)
@@ -134,6 +134,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 - [ ] 좌측 sticky 네비가 모든 sub-section에 매핑되는가 (앵커 ID 일치)
 - [ ] 각 pillar에 [활동] 섹션이 있는가
 - [ ] 이미지 플레이스홀더가 각 pillar 최소 2개 이상 들어갔는가
+- [ ] 본문·라벨·callout 어디에도 이모지가 들어가지 않았는가 (텍스트만)
 
 ---
 
@@ -191,3 +192,4 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 - 비공식 정의를 단정형으로 서술
 - 이미지 자동 생성 (placeholder만 둠 — 실제 이미지는 사용자가 채움)
 - 한 sub-section이 600 단어 초과 (압축하거나 둘로 나눔)
+- 이모지 사용 (본문·section-label·figure-tag·callout 모두 금지 — 텍스트만)

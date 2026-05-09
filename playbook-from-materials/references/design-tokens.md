@@ -150,7 +150,7 @@ uppercase + letter-spacing 0.1em + 작은 알약 형태.
 | 다크 모드 | 라이트 전용 |
 | 8자리 hex 색상 | pptxgenjs / browser 호환성 — opacity 별도 |
 | 과도한 그림자 | `--shadow-soft`만 허용 |
-| 이모지 본문 사용 | callout 4종(💡 ℹ️ ⚠️ 🔴)에만 한정 |
+| 이모지 사용 | 일체 금지 (본문·라벨·callout 모두) |
 
 ---
 

@@ -81,12 +81,8 @@ body {
   font-weight: 700; color: var(--gray-700); font-size: 15px;
 }
 .topbar-brand .logo-mark {
-  width: 18px; height: 18px; border-radius: 4px;
-  background: var(--ups-purple); display: inline-block;
-}
-.topbar-brand .small {
-  color: var(--gray-400); font-weight: 400;
-  font-size: 12px; margin-left: 4px; letter-spacing: 0.04em;
+  height: 24px; width: auto;
+  display: inline-block; vertical-align: middle;
 }
 
 .layout {
@@ -429,9 +425,8 @@ tr:first-child td { border-top: none; }
 
 <div class="topbar">
   <div class="topbar-brand">
-    <span class="logo-mark"></span>
+    <img class="logo-mark" src="assets/upstage-education.png" alt="Upstage Education">
     <!-- BRAND -->{{TOPBAR_BRAND}}<!-- /BRAND -->
-    <span class="small">v1.0</span>
   </div>
 </div>
 

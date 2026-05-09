@@ -53,7 +53,7 @@
   <!-- 이미지 플레이스홀더 (선택) -->
   <figure class="figure figure--illustration" aria-label="placeholder">
     <div class="figure-placeholder">
-      <span class="figure-tag">🎨 ILLUSTRATION</span>
+      <span class="figure-tag">ILLUSTRATION</span>
       <p class="figure-spec"><strong>들어갈 이미지:</strong> [구체 묘사]</p>
       <p class="figure-spec"><strong>의도:</strong> [왜 필요한가]</p>
       <p class="figure-spec"><strong>권장 비율:</strong> [16:9 / 4:3 / 정사각형]</p>
@@ -74,15 +74,14 @@
 
   <!-- C. 전략적 인사이트 (callout) -->
   <div class="callout callout--warn">
-    <div class="callout-icon">⚠️</div>
     <div class="callout-body">
       <p><strong>흔한 함정</strong> — [안티패턴 설명]</p>
     </div>
   </div>
 
-  <!-- D. 마스터 한 줄 평 -->
+  <!-- D. Key Summary -->
   <div class="master-line">
-    <span class="label">마스터 한 줄 평</span>
+    <span class="label">Key Summary</span>
     "[강한 단언 한 문장 — <strong>핵심 키워드</strong> 굵게]"
   </div>
 </section>
@@ -109,7 +108,6 @@
 ```html
 <!-- TIP (긍정·권장) -->
 <div class="callout callout--tip">
-  <div class="callout-icon">💡</div>
   <div class="callout-body">
     <p><strong>강조</strong> — [팁 본문]</p>
   </div>
@@ -117,7 +115,6 @@
 
 <!-- NOTE (정보·hedging) -->
 <div class="callout callout--note">
-  <div class="callout-icon">ℹ️</div>
   <div class="callout-body">
     <p><strong>중요한 hedging</strong> — [출처 / 권위 / 변동성 단서]</p>
   </div>
@@ -125,7 +122,6 @@
 
 <!-- WARN (주의) -->
 <div class="callout callout--warn">
-  <div class="callout-icon">⚠️</div>
   <div class="callout-body">
     <p>현상 — [상황]. 결과 — [부작용].</p>
     <p><strong>해결책</strong> — [조치]</p>
@@ -134,7 +130,6 @@
 
 <!-- DANGER (위험) -->
 <div class="callout callout--danger">
-  <div class="callout-icon">🔴</div>
   <div class="callout-body">
     <p><strong>중대 경고</strong> — [심각한 위험 본문]</p>
   </div>
@@ -237,7 +232,7 @@
 
 ```html
 <div class="master-line">
-  <span class="label">마스터 한 줄 평</span>
+  <span class="label">Key Summary</span>
   "[강한 take-away — <strong>핵심 단어</strong>는 bold]"
 </div>
 ```
@@ -252,7 +247,7 @@
 <!-- 스크린샷 자리 -->
 <figure class="figure figure--screenshot" aria-label="placeholder">
   <div class="figure-placeholder">
-    <span class="figure-tag">📷 SCREENSHOT</span>
+    <span class="figure-tag">SCREENSHOT</span>
     <p class="figure-spec"><strong>들어갈 이미지:</strong> [실제 화면 / 캡처 묘사]</p>
     <p class="figure-spec"><strong>의도:</strong> [왜 필요한가]</p>
     <p class="figure-spec"><strong>권장 비율:</strong> 16:9</p>
@@ -262,7 +257,7 @@
 <!-- 일러스트 / 다이어그램 자리 -->
 <figure class="figure figure--illustration" aria-label="placeholder">
   <div class="figure-placeholder">
-    <span class="figure-tag">🎨 ILLUSTRATION</span>
+    <span class="figure-tag">ILLUSTRATION</span>
     <p class="figure-spec"><strong>들어갈 이미지:</strong> [개념 도식 묘사]</p>
     <p class="figure-spec"><strong>의도:</strong> [왜 필요한가]</p>
     <p class="figure-spec"><strong>권장 비율:</strong> 4:3 또는 정사각형</p>
@@ -285,7 +280,7 @@
   <!-- 이미지 placeholder (선택) -->
   <figure class="figure figure--screenshot" aria-label="placeholder">
     <div class="figure-placeholder">
-      <span class="figure-tag">📷 SCREENSHOT</span>
+      <span class="figure-tag">SCREENSHOT</span>
       <p class="figure-spec"><strong>들어갈 이미지:</strong> [잘 채워진 예시]</p>
       <p class="figure-spec"><strong>의도:</strong> 빈 템플릿 앞에서 막히는 학습자에게 reference</p>
       <p class="figure-spec"><strong>권장 비율:</strong> 16:9</p>
@@ -317,7 +312,6 @@
 
   <!-- 마무리 callout (master-line 대신) -->
   <div class="callout callout--tip">
-    <div class="callout-icon">💡</div>
     <div class="callout-body">
       <p>[권장 워크플로 한 마디]</p>
     </div>
@@ -393,30 +387,10 @@
   <p>각 pillar 끝의 <strong>[활동]</strong> 섹션에는 채워서 쓸 수 있는 템플릿이 들어 있습니다. 우상단 <code>복사</code> 버튼으로 마크다운을 자기 에디터에 붙여 넣어 채워보세요.</p>
 
   <div class="callout callout--tip">
-    <div class="callout-icon">💡</div>
     <div class="callout-body">
       <p><strong>읽는 시간 가이드</strong> · [pillar별 예상 시간 안내]</p>
     </div>
   </div>
-</section>
-```
-
----
-
-## P13. 맺음말 (closing)
-
-```html
-<section id="closing" style="margin-top: 80px; padding-top: 48px; border-top: var(--border-thin);">
-  <span class="section-label">맺음말</span>
-  <h2>핵심 문장 모음</h2>
-  <ul>
-    <li>[Playbook 전체에서 인상적인 take-away 1]</li>
-    <li>[take-away 2]</li>
-    <li>...</li>
-  </ul>
-  <p style="margin-top: 32px; color: var(--gray-400); font-size: 13px;">
-    이 Playbook은 [1순위 자료]를 1순위 소스로 하고 [그 외 자료]를 참고해 작성되었습니다. [부분별 권위 hedging 한 줄]. 시각 디자인은 Upstage 디자인 토큰을 따릅니다.
-  </p>
 </section>
 ```
 
@@ -443,4 +417,4 @@
 | 컬러를 hex로 직접 박기 | CSS 변수만 사용 (var(--xxx)) |
 | `<br>` 남발 | 단락 분리는 `<p>`로 |
 | `<div>`로 모든 걸 감싸기 | semantic HTML(section/figure/article) 우선 |
-| 이모지 인라인 사용 | callout 4종(💡 ℹ️ ⚠️ 🔴) + figure-tag(📷 🎨)에만 한정 |
+| 이모지 일체 사용 | 본문·라벨·callout 모두 텍스트만. callout 색상·테두리로 종류 구분 |

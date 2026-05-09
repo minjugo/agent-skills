@@ -27,7 +27,7 @@
 
 ## 미리보기
 
-> ⚠ 실제 generated playbook 화면 캡처 (좌측 네비 + 흰 배경 + 4-section 카드)
+> 실제 generated playbook 화면 캡처 (좌측 네비 + 흰 배경 + 4-section 카드)
 
 생성된 HTML은 다음을 갖춤:
 
@@ -134,9 +134,9 @@ playbook-from-materials/
 - 본문 영역 흰색 배경 (보라 배경 금지 — Upstage Anti-pattern)
 - 좌측 280px sticky 네비, 본문 max-width 820px
 - Geist + Noto Sans KR 폰트 (Google Fonts preconnect)
-- 4-section 구조: **핵심 원리 / 실전 활용 / 전략적 인사이트 / 마스터 한 줄 평**
+- 4-section 구조: **핵심 원리 / 실전 활용 / 전략적 인사이트 / Key Summary**
 - 비공식 개념 자동 hedging callout
-- 이미지 placeholder (📷 SCREENSHOT / 🎨 ILLUSTRATION) 각 pillar 최소 2개
+- 이미지 placeholder (SCREENSHOT / ILLUSTRATION) 각 pillar 최소 2개
 
 ### 사용자가 직접 채우는 것
 
