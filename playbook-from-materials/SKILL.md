@@ -112,6 +112,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 ## 7. 출력
 
 사용자가 지정한 경로 또는 기본 경로(`./[주제]_playbook.html`)에 Write로 저장.
+`assets/upstage-education.png`을 출력 HTML과 같은 디렉터리의 `assets/`로 함께 복사. `<img>` `src`는 `assets/upstage-education.png`.
 
 저장 후 다음을 보고:
 - 파일 경로 (절대경로)
@@ -158,6 +159,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 | `references/design-tokens.md` | Upstage 디자인 토큰 — 색·폰트·간격·금지 사항 |
 | `references/html-patterns.md` | 모든 재사용 가능한 HTML 패턴 (4-section card, callout, activity, figure 등) |
 | `assets/skeleton.html` | 베이스 HTML — CSS·JS 포함, 콘텐츠 자리만 비어 있음 |
+| `assets/upstage-education.png` | 좌상단 로고 — 출력 디렉터리의 `assets/`로 함께 복사 |
 
 ---
 
