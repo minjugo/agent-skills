@@ -88,7 +88,7 @@
 - 흔한 안티패턴 / 빠지기 쉬운 함정
 - callout(--tip / --warn / --danger)으로 강조
 
-### D. 마스터 한 줄 평
+### D. Key Summary
 
 - 그 sub-section의 take-away를 한 문장으로
 - 굵은 글씨 + 인용 마크 한 자리 + 강한 단언

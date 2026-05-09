@@ -80,9 +80,9 @@
     </div>
   </div>
 
-  <!-- D. 마스터 한 줄 평 -->
+  <!-- D. Key Summary -->
   <div class="master-line">
-    <span class="label">마스터 한 줄 평</span>
+    <span class="label">Key Summary</span>
     "[강한 단언 한 문장 — <strong>핵심 키워드</strong> 굵게]"
   </div>
 </section>
@@ -237,7 +237,7 @@
 
 ```html
 <div class="master-line">
-  <span class="label">마스터 한 줄 평</span>
+  <span class="label">Key Summary</span>
   "[강한 take-away — <strong>핵심 단어</strong>는 bold]"
 </div>
 ```

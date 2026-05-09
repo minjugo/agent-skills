@@ -1,6 +1,6 @@
 ---
 name: playbook-from-materials
-description: 다양한 자료(MD·PDF·PPTX·HTML·URL 등)를 입력받아 좌측 sticky 네비게이션과 4-section 구조(핵심 원리·실전 활용·전략적 인사이트·마스터 한 줄 평)를 가진 자기학습용 HTML Playbook 한 파일로 정리. Upstage 디자인 토큰 + 흰 배경 + 채워서 쓰는 활동 템플릿 + 이미지 플레이스홀더 포함. 사내 교육·신입 온보딩·세미나 후속 자료·자기학습 가이드 만들 때 사용.
+description: 다양한 자료(MD·PDF·PPTX·HTML·URL 등)를 입력받아 좌측 sticky 네비게이션과 4-section 구조(핵심 원리·실전 활용·전략적 인사이트·Key Summary)를 가진 자기학습용 HTML Playbook 한 파일로 정리. Upstage 디자인 토큰 + 흰 배경 + 채워서 쓰는 활동 템플릿 + 이미지 플레이스홀더 포함. 사내 교육·신입 온보딩·세미나 후속 자료·자기학습 가이드 만들 때 사용.
 allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 ---
 
@@ -126,7 +126,7 @@ allowed-tools: Read, Write, Glob, Grep, Bash, WebFetch
 
 - [ ] 주제와 pillar 구성이 자료의 무게중심을 반영하는가
 - [ ] 비공식·커뮤니티 개념이 hedging callout으로 표시됐는가
-- [ ] 각 개념 sub-section에 4-section 구조 (핵심 원리 / 실전 활용 / 전략적 인사이트 / 마스터 한 줄 평) 가 들어갔는가 — 활동 섹션 제외
+- [ ] 각 개념 sub-section에 4-section 구조 (핵심 원리 / 실전 활용 / 전략적 인사이트 / Key Summary) 가 들어갔는가 — 활동 섹션 제외
 - [ ] [활동] 섹션의 모든 코드 블록 우상단에 `복사` 버튼이 있는가 (`<button class="code-copy">복사</button>`)
 - [ ] Upstage 디자인 토큰을 그대로 사용했는가 (CSS 변수 변경 금지)
 - [ ] 본문 영역 흰색 배경 (보라/원색 배경 금지)
