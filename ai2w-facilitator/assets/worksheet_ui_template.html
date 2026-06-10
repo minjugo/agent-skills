@@ -1,0 +1,225 @@
+<!--
+AI2W 워크시트 완성본 UI 템플릿 — 디자인 토큰 (Jacksons Purple + Gray 팔레트)
+사용법: {{ }} 토큰과 <!-- FILL: ... -- > 영역을 진행 파일 내용으로 채워 저장.
+- 흐름(WS2/WS3)은 도형 기반 순서도(.fc)로 그린다. 단계 = <div class="node ..."> , 사이 연결 = <div class="conn"></div>.
+  도형: start(시작/종료·타원형) · process(처리·사각형) · io(입출력·평행사변형, 안에 <span>) · decision(판단·마름모, 안에 <span>) · agent(Agent 박스·보라, WS3)
+  병렬은 <div class="parallel"><div class="parallel-label">병렬</div><div class="parallel-row"> … </div></div>.
+  분기(Yes/No)는 decision 마름모 바로 뒤에 <div class="branch">…Yes/No 목적지…</div>. 도형 규칙 = references/flowchart_rules.md.
+- 태그 뱃지(node 안에 부착): ◎=<span class="badge o">◎</span> · P=<span class="badge p">P</span> · H=<span class="badge h">H</span>
+- 비는 칸은 팀이 적은 그대로, 정말 없으면 "(추후 확인)". 임의로 지어내지 않는다.
+디자인 규칙: Ups Purple은 포인트만 / 원색 금지 / 여백 충분 / 제목 아래 장식선 금지.
+자세히는 references/render_worksheet.md.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI2W 워크시트 완성본 — {{TEAM}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700;800&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ups-purple:#805CFB;
+    --jp-50:#ECF0FF; --jp-100:#DDE3FF; --jp-200:#C2CBFF; --jp-300:#9CA7FF;
+    --jp-400:#7578FF; --jp-700:#442AD8;
+    --gray-100:#F8F7FD; --gray-200:#E9E8F0; --gray-400:#979CAE;
+    --gray-500:#434C60; --gray-600:#1C2537; --gray-700:#0D1320;
+    --radius-md:10px; --radius-lg:16px;
+    --shadow-soft:0 1px 2px rgba(28,37,55,.04);
+    --font:'Geist','Noto Sans KR',system-ui,'Apple SD Gothic Neo',sans-serif;
+  }
+  *{ box-sizing:border-box; }
+  body{ font-family:var(--font); color:var(--gray-500); background:var(--jp-50);
+        margin:0; font-size:16px; line-height:1.7; }
+  .wrap{ max-width:960px; margin:0 auto; padding:48px 24px 32px; }
+
+  /* 헤더 — JP 50 위에 라벨/타이틀 직접 (카드 없이, 콘텐츠 슬라이드 스타일) */
+  .page-label{ font-size:12px; color:var(--ups-purple); font-weight:500;
+               letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px; }
+  h1.title{ font-family:var(--font); font-size:32px; font-weight:800; color:var(--gray-700);
+            line-height:1.3; letter-spacing:-.01em; margin:0 0 16px; }
+  .meta{ display:flex; gap:24px; flex-wrap:wrap; color:var(--gray-400); font-size:14px; }
+  .meta b{ color:var(--gray-600); font-weight:700; }
+
+  /* 카드 */
+  .card{ background:#fff; border:1px solid var(--gray-200); border-radius:var(--radius-lg);
+         box-shadow:var(--shadow-soft); padding:24px 26px; margin:20px 0; }
+  .card-head{ display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+  .ws-badge{ background:var(--jp-100); color:var(--jp-700); font-weight:700; font-size:13px;
+             border-radius:999px; padding:3px 12px; }
+  .card-head h2{ margin:0; font-size:19px; font-weight:700; color:var(--gray-600); line-height:1.3; }
+
+  .row{ display:grid; grid-template-columns:180px 1fr; gap:6px 18px; padding:9px 0;
+        border-top:1px solid var(--gray-200); }
+  .row:first-of-type{ border-top:none; }
+  .row .k{ color:var(--gray-600); font-weight:700; font-size:14px; }
+  .row .v{ color:var(--gray-500); font-size:15px; white-space:pre-wrap; }
+
+  /* 순서도 (도형 기반) */
+  .fc{ display:flex; flex-direction:column; align-items:center; gap:0; margin:10px 0 4px; }
+  .node{ min-width:210px; max-width:90%; text-align:center; padding:10px 16px; font-size:14px;
+         color:var(--gray-600); background:#fff; border:1px solid var(--gray-200); border-radius:var(--radius-md); }
+  .node.start{ border-radius:999px; background:var(--gray-100); font-weight:700; }   /* 시작/종료 — 타원형 */
+  .node.io{ background:var(--gray-100); transform:skewX(-11deg); }                    /* 입출력 — 평행사변형 */
+  .node.io > span{ display:inline-block; transform:skewX(11deg); }
+  /* 판단/분기 — 마름모(clip-path, 박스 안에 모양이 들어가 겹침 없음) */
+  .node.decision{ min-width:0; max-width:78%; padding:26px 54px; margin:8px 0; border:none; border-radius:0;
+                  background:var(--gray-200); text-align:center;
+                  clip-path:polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+                  filter:drop-shadow(0 1px 1.5px rgba(28,37,55,.12)); }
+  .node.decision > span{ display:inline-block; font-size:13px; font-weight:700; color:var(--gray-700); line-height:1.3; }
+  .branch{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin:8px 0 0; }
+  .branch-leg{ background:var(--gray-100); border:1px solid var(--gray-200); border-radius:var(--radius-md);
+               padding:6px 12px; font-size:13px; color:var(--gray-600); }
+  .yn{ font-weight:700; border-radius:999px; padding:1px 8px; font-size:11px; margin-right:6px; }
+  .yn.yes{ background:var(--jp-100); color:var(--jp-700); }
+  .yn.no{ background:var(--gray-200); color:var(--gray-600); }
+  .node.agent{ background:var(--jp-100); border-color:var(--jp-300); color:var(--jp-700); font-weight:700; } /* Agent 박스 — 보라 */
+  .conn{ width:2px; height:20px; background:var(--gray-300); position:relative; }
+  .conn::after{ content:''; position:absolute; left:-4px; bottom:-1px;
+                border-left:5px solid transparent; border-right:5px solid transparent; border-top:7px solid var(--gray-300); }
+  .parallel{ position:relative; border:1px dashed var(--jp-300); border-radius:var(--radius-md);
+             padding:18px 14px 12px; background:rgba(221,227,255,.18); }
+  .parallel-label{ position:absolute; top:-9px; left:14px; background:var(--jp-50); color:var(--jp-700);
+                   font-size:11px; font-weight:700; padding:0 7px; }
+  .parallel-row{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .parallel-row .node{ min-width:150px; }
+  .badge{ display:inline-block; font-size:11px; font-weight:700; border-radius:999px;
+          padding:2px 9px; margin-left:6px; }
+  .badge.o{ background:var(--jp-100); color:var(--jp-700); }       /* ◎ Agent 가능 — 퍼플 */
+  .badge.agent{ background:var(--jp-300); color:#fff; }            /* AGENT — 퍼플 */
+  .badge.p{ background:var(--gray-200); color:var(--gray-700); }   /* P 병목 — 진회색 */
+  .badge.h{ background:var(--gray-100); color:var(--gray-500); border:1px solid var(--gray-200); } /* H 사람필수 */
+  .badge.human{ background:var(--gray-200); color:var(--gray-600); }
+  .legend{ color:var(--gray-400); font-size:12px; margin-top:10px; }
+
+  /* 표 */
+  table.mini{ width:100%; border-collapse:separate; border-spacing:0; border-radius:var(--radius-md);
+              overflow:hidden; font-size:14px; margin-top:4px; }
+  table.mini th{ background:var(--jp-300); color:#fff; text-align:left; font-weight:700; padding:9px 12px; }
+  table.mini td{ padding:9px 12px; border-top:1px solid var(--gray-200); background:#fff; }
+  .pick{ background:var(--jp-50); border-radius:var(--radius-md); padding:13px 16px; margin-top:14px;
+         font-weight:700; color:var(--gray-600); }
+  .pick b{ color:var(--jp-700); }
+
+  /* PRD 핵심 행 */
+  .prd .row.core{ background:var(--jp-50); border-radius:8px; border-top:none; padding-left:10px; margin:2px 0; }
+  .prd .row.core .k .star{ display:inline-block; background:var(--jp-100); color:var(--jp-700);
+                           font-size:10px; font-weight:700; border-radius:999px; padding:1px 7px; margin-left:6px; }
+
+  footer{ text-align:left; color:var(--gray-400); font-size:12px; padding:20px 2px; }
+  @media print{ body{ background:#fff; } .card{ box-shadow:none; break-inside:avoid; } .wrap{ padding-top:24px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="page-label">AI2W WORKSHOP · 워크시트 완성본</div>
+  <h1 class="title">{{WORK_TITLE}}</h1>
+  <div class="meta">
+    <span><b>팀</b> {{TEAM}}</span>
+    <span><b>소속/팀원</b> {{MEMBERS}}</span>
+    <span><b>작성일</b> {{DATE}}</span>
+  </div>
+
+  <!-- WS1 -->
+  <div class="card">
+    <div class="card-head"><span class="ws-badge">WS1</span><h2>자동화하고 싶은 업무 — 큰 그림</h2></div>
+    <div class="row"><div class="k">자동화하고 싶은 업무</div><div class="v">{{WS1_WORK}}</div></div>
+    <div class="row"><div class="k">왜 (답답한 점)</div><div class="v">{{WS1_WHY}}</div></div>
+    <div class="row"><div class="k">누가·언제·빈도</div><div class="v">{{WS1_WHO}}</div></div>
+    <div class="row"><div class="k">현재 대략의 모습</div><div class="v">{{WS1_NOW}}</div></div>
+    <div class="row"><div class="k">기대 변화</div><div class="v">{{WS1_HOPE}}</div></div>
+  </div>
+
+  <!-- WS2 -->
+  <div class="card">
+    <div class="card-head"><span class="ws-badge">WS2</span><h2>As-Is 업무 Flow</h2></div>
+    <div class="row"><div class="k">시작 트리거 / 최종 산출물</div><div class="v">{{WS2_TRIGGER}}  →  {{WS2_OUTPUT}}</div></div>
+    <!-- FILL: As-Is 순서도. node(도형) + conn(연결) 반복. 병렬은 .parallel. 태그 뱃지는 해당 시 부착. 아래는 예시 구조. -->
+    <div class="fc">
+      <div class="node start">{{시작 트리거}}</div>
+      <div class="conn"></div>
+      <div class="parallel"><div class="parallel-label">병렬</div><div class="parallel-row">
+        <div class="node process">{{단계2}} <span class="badge p">P</span><span class="badge o">◎</span></div>
+        <div class="node process">{{단계3}} <span class="badge p">P</span><span class="badge o">◎</span></div>
+        <div class="node process">{{단계4}} <span class="badge p">P</span><span class="badge o">◎</span></div>
+      </div></div>
+      <div class="conn"></div>
+      <div class="node process">{{단계5 — 처리}} <span class="badge p">P</span><span class="badge o">◎</span></div>
+      <div class="conn"></div>
+      <div class="node process">{{단계6 — 처리}} <span class="badge h">H</span></div>
+      <div class="conn"></div>
+      <div class="node decision"><span>{{판단? 예: 확정?}}</span></div>
+      <div class="branch">
+        <div class="branch-leg"><span class="yn yes">Yes</span>{{다음 단계로}}</div>
+        <div class="branch-leg"><span class="yn no">No</span>{{앞 단계로 복귀 ↩}}</div>
+      </div>
+      <div class="conn"></div>
+      <div class="node io"><span>{{출력/산출물}}</span></div>
+      <div class="conn"></div>
+      <div class="node start">{{종료}}</div>
+    </div>
+    <div class="legend">◯ 시작/종료 · ▭ 처리 · ▱ 입출력 · ◇ 판단(Yes/No 분기) · 보라 = Agent 후보(◎) · P 병목 · H 사람 필수</div>
+  </div>
+
+  <!-- WS3 -->
+  <div class="card">
+    <div class="card-head"><span class="ws-badge">WS3</span><h2>To-Be(AX) · Agent 로드맵</h2></div>
+    <!-- FILL: To-Be 순서도. As-Is에서 ◎였던 자리를 .node.agent(보라 Agent 박스)로 교체. 사람 검토/승인은 .node.decision("◇ " 접두). -->
+    <div class="fc">
+      <div class="node start">{{시작 트리거}}</div>
+      <div class="conn"></div>
+      <div class="node agent">{{Agent A — 무엇을 한다}}</div>
+      <div class="conn"></div>
+      <div class="node decision"><span>{{사람 검토/승인?}}</span></div>
+      <div class="conn"></div>
+      <div class="node agent">{{Agent B — 무엇을 한다}}</div>
+      <div class="conn"></div>
+      <div class="node start">{{종료}}</div>
+    </div>
+    <div class="row" style="margin-top:14px;border-top:none;"><div class="k">로드맵의 Agent들</div><div class="v">{{WS3_AGENTS}}</div></div>
+    <div class="legend">보라 박스 = Agent · ◇ = 사람 검토/승인 · ◯ 시작/종료 · 만들고 싶은 Agent를 다 담은 로드맵</div>
+  </div>
+
+  <!-- WS4 -->
+  <div class="card">
+    <div class="card-head"><span class="ws-badge">WS4</span><h2>Agent 우선순위</h2></div>
+    <table class="mini"><thead><tr><th>Agent</th><th>기대 효과</th><th>실현가능성</th><th>순위</th></tr></thead>
+      <tbody><!-- FILL: 후보별 tr --><tr><td>{{A}}</td><td>{{EFFECT}}</td><td>{{FEAS}}</td><td>{{RANK}}</td></tr></tbody>
+    </table>
+    <div class="pick">▶ 1순위 Agent: <b>{{WS4_PICK}}</b> &nbsp;—&nbsp; {{WS4_REASON}}</div>
+  </div>
+
+  <!-- WS5 -->
+  <div class="card">
+    <div class="card-head"><span class="ws-badge">WS5</span><h2>Agent 정의 (1순위)</h2></div>
+    <div class="row"><div class="k">이름 / 목적</div><div class="v">{{WS5_NAME}} — {{WS5_PURPOSE}}</div></div>
+    <div class="row"><div class="k">수행 단계</div><div class="v">{{WS5_STEPS}}</div></div>
+    <div class="row"><div class="k">트리거 / 기대 산출물</div><div class="v">{{WS5_TRIGGER}} / {{WS5_OUTPUT}}</div></div>
+    <div class="row"><div class="k">Human 개입</div><div class="v">{{WS5_HUMAN}}</div></div>
+    <div class="row"><div class="k">Tool</div><div class="v">{{WS5_TOOL}}</div></div>
+    <div class="row"><div class="k">Input / Output</div><div class="v">{{WS5_IO}}</div></div>
+    <div class="row"><div class="k">구조</div><div class="v">{{WS5_STRUCT}}</div></div>
+  </div>
+
+  <!-- WS6 -->
+  <div class="card prd">
+    <div class="card-head"><span class="ws-badge">WS6</span><h2>PRD 초안</h2></div>
+    <div class="row"><div class="k">1. 개요</div><div class="v">{{PRD1}}</div></div>
+    <div class="row"><div class="k">2. 업무 맥락</div><div class="v">{{PRD2}}</div></div>
+    <div class="row core"><div class="k">3. 대상 사용자<span class="star">핵심</span></div><div class="v">{{PRD3}}</div></div>
+    <div class="row"><div class="k">4. 선정 이유</div><div class="v">{{PRD4}}</div></div>
+    <div class="row core"><div class="k">5. 기능 요구사항<span class="star">핵심</span></div><div class="v">{{PRD5}}</div></div>
+    <div class="row"><div class="k">6. Human 개입 설계</div><div class="v">{{PRD6}}</div></div>
+    <div class="row core"><div class="k">7. 구현 방향<span class="star">핵심</span></div><div class="v">{{PRD7}}</div></div>
+    <div class="row"><div class="k">8. 기대효과 & 지표</div><div class="v">{{PRD8}}</div></div>
+    <div class="row"><div class="k">9. 리스크 & 전제</div><div class="v">{{PRD9}}</div></div>
+  </div>
+
+  <footer>AI2W Workshop · 본 워크시트는 워크숍 활동 산출물입니다.</footer>
+</div>
+</body>
+</html>
